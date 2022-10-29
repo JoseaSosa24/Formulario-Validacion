@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style/style.css">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
+  <title>Nota Estudiante</title>
+</head>
+
+<body>
+  <main>
+
+    <form action="" class="formulario" id="formulario">
+      <h1 class="formulario-titulo" id="">CALCULAR NOTA</h1>
+      <section class="items-formulario">
+        <input type="text" class="form_item" name="nombre" id="nombre" placeholder="Nombre*" minlength="2" maxlength="32" required>
+        <input type="text" class="form_item" name="apellido" id="apellido" placeholder="Apellido*" minlength="2" maxlength="32" required>
+        <input type="text" class="form_item" name="documento" id="documento" placeholder="Documento*" minlength="10" maxlength="10" required>
+        <input type="email" class="form_item" name="correo" id="correo" placeholder="Correo*" required>
+        <input type="text" class="form_item" name="nota1" id="nota1" placeholder="Nota Uno*" required>
+        <input type="text" class="form_item" name="nota2" id="nota2" placeholder="Nota Dos*" required>
+      </section>
+
+
+      <section class="items-botones-formulario ">
+        <input type="button" value="Calcular" class="botones-formulario" id="btnCalcular">
+        <input type="button" value="Borrar" class="botones-formulario" id="btnBorrar">
+      </section>
+
+      <section class="mensaje" id="mensaje">
+        <b class="mensaje-emergente" id="mensaje-emergente" ></b>
+      </section>
+
+
+    </form>
+
+    <section class="titulo-salida">
+      <h2 class="titulo_salida" id="titulo_salida">LOS DATOS SON: </h2>
+    </section>
+
+    <section class="datos-salida-formulario">
+      <label for="" id="mostrarNombre"></label>
+      <label for="" id="mostrarApellido"></label>
+      <label for="" id="mostrarDocumento"> </label>
+      <label for="" id="mostrarCorreo"></label>
+      <label for="" id="mostrarNota1"></label>
+      <label for="" id="mostrarNota2"></label>
+      <label for="" id="mostrarNotaFinal"></label>
+    </section>
+    <script src="./JS/main.js"></script>
+</body>
+
+</html>
