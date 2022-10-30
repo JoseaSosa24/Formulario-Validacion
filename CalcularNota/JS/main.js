@@ -15,18 +15,20 @@ let expresionDocumento = /^-?\d+\.?\d*$/m;
 let expresionNota = /^(\d)?(\d|,)*\.?\d$/;
 let expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
+//
+
 //Funciones
 
-function ValidarExpresiones(event, expresion, element) {
+function ValidarExpresiones(event, expresion, campo) {
   if (expresion.test(event.target.value)) {
     console.log("Validación exitosa");
-    element.classList.add("correcto");
-    element.classList.remove("error");
+    campo.classList.add("correcto");
+    campo.classList.remove("error");
     return true;
   } else {
     console.log("Validación errada");
-    element.classList.add("error");
-    element.classList.remove("correcto");
+    campo.classList.add("error");
+    campo.classList.remove("correcto");
     return false;
   }
 }
