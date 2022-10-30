@@ -173,6 +173,7 @@ function ValidarCamposCorrectos() {
 inputs.forEach((input) => {
   // console.log(input);
   input.addEventListener("keydown", validarFormulario);
+  input.addEventListener("blur",validarFormulario);
 });
 
 // const mostrarnombre = document.querySelector("#mostrarNombre");
