@@ -15,7 +15,7 @@ let expresionDocumento = /^[-?\d+\.?\d*]{10}$/m;
 let expresionNota = /^(\d)?(\d|,)*\.?\d$/;
 let expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
-//Vector de campos
+//Array de campos para posteriromente verificar campos vacios y Expresiones Regulares
 const campos = {
   nombre: false,
   apellido: false,
@@ -63,8 +63,10 @@ function ValidarCamposVacios() {
 
 const validarNota = (nota, nombreCampo) => {
   if (
-    (parseFloat(nota.value) < 0.0 || parseFloat(nota.value) > 5.0) ||
-    (nota.value == "" || isNaN(nota.value)==true)
+    parseFloat(nota.value) < 0.0 ||
+    parseFloat(nota.value) > 5.0 ||
+    nota.value == "" ||
+    isNaN(nota.value) == true
   ) {
     console.log(nota.value);
     console.log("Nota incorrecta");
@@ -104,24 +106,12 @@ function mostrarDatos() {
   document.querySelector(
     "#mostrarNombre"
   ).textContent = `Nombre: ${nombre.value}`;
-  document.querySelector(
-    "#mostrarApellido"
-  ).textContent = `Apellido: ${apellido.value}`;
-  document.querySelector(
-    "#mostrarDocumento"
-  ).textContent = `Documento: ${documento.value}`;
-  document.querySelector(
-    "#mostrarCorreo"
-  ).textContent = `Correo: ${correo.value}`;
-  document.querySelector(
-    "#mostrarNota1"
-  ).textContent = `Nota 1: ${nota1.value}`;
-  document.querySelector(
-    "#mostrarNota2"
-  ).textContent = `Nota 2: ${nota2.value}`;
-  document.querySelector(
-    "#mostrarNotaFinal"
-  ).textContent = `Nota Final: ${CalcularNotaFinal()}`;
+  document.querySelector("#mostrarApellido").textContent = `Apellido: ${apellido.value}`;
+  document.querySelector("#mostrarDocumento").textContent = `Documento: ${documento.value}`;
+  document.querySelector("#mostrarCorreo").textContent = `Correo: ${correo.value}`;
+  document.querySelector("#mostrarNota1").textContent = `Nota 1: ${nota1.value}`;
+  document.querySelector("#mostrarNota2").textContent = `Nota 2: ${nota2.value}`;
+  document.querySelector("#mostrarNotaFinal").textContent = `Nota Final: ${CalcularNotaFinal()}`;
 }
 
 let validar;
@@ -140,7 +130,7 @@ const validarFormulario = (event) => {
     case "apellido":
       ValidarExpresiones(event, expresionApellido, apellido, "apellido");
       break;
-    case "documento": 
+    case "documento":
       ValidarExpresiones(event, expresionDocumento, documento, "documento");
       break;
     case "correo":
@@ -180,21 +170,10 @@ inputs.forEach((input) => {
 const btnCalcular = document.querySelector("#btnCalcular");
 
 btnCalcular.addEventListener("click", () => {
-  console.log(
-    campos.nombre,
-    campos.apellido,
-    campos.documento,
-    campos.correo,
-    campos.notaUno,
-    campos.notaDos
+  console.log(campos.nombre, campos.apellido, campos.documento, campos.correo, campos.notaUno, campos.notaDos
   );
   if (
-    campos.nombre &&
-    campos.apellido &&
-    campos.documento &&
-    campos.correo &&
-    campos.notaUno &&
-    campos.notaDos
+    campos.nombre && campos.apellido && campos.documento && campos.correo && campos.notaUno && campos.notaDos
   ) {
     mostrarDatos();
     // LimpiarCampos();
