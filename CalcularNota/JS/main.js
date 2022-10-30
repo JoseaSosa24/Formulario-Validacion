@@ -124,55 +124,25 @@ const validarFormulario = (event) => {
   switch (event.target.name) {
     case "nombre":
       validar = ValidarExpresiones(event, expresionNombre, nombre);
-      if (validar == true) {
-        nom = true;
-      } else {
-        nom = false;
-      }
       // console.log(nom);
       break;
     case "apellido":
       validar = ValidarExpresiones(event, expresionApellido, apellido);
-      if (validar == true) {
-        apel = true;
-      } else {
-        apel = false;
-      }
-
       break;
     case "documento":
       validar = ValidarExpresiones(event, expresionDocumento, documento);
-      if (validar == true) {
-        doc = true;
-      } else {
-        doc = false;
-      }
       break;
     case "correo":
       validar = ValidarExpresiones(event, expresionCorreo, correo);
-      if (validar == true) {
-        cor = true;
-      } else {
-        cor = false;
-      }
       break;
     case "nota1":
       validar = ValidarExpresiones(event, expresionNota, nota1);
       validarNota(nota1);
-      if (validar == true) {
-        n1 = true;
-      } else {
-        n1 = false;
-      }
       break;
     case "nota2":
       validar = ValidarExpresiones(event, expresionNota, nota2);
       validarNota(nota2);
-      if (validar == true) {
-        n2 = true;
-      } else {
-        n2 = false;
-      }
+
       break;
     default:
       break;
