@@ -108,6 +108,7 @@ let mensajeEmergente = document.querySelector("#mensaje-emergente");
 let camposCorrectos;
 //Funciones Anonimas-Flecha
 const validarFormulario = (event) => {
+  // event.preventDefault();
   mensajeEmergente.textContent = "";
   let nom, apel, doc, cor, n1, n2;
   switch (event.target.name) {
@@ -208,6 +209,7 @@ btnCalcular.addEventListener("click", () => {
   if (ValidarCamposVacios() == false) {
     mostrarDatos();
     // LimpiarCampos();
+    // formulario.reset();
     mensajeEmergente.textContent = "";
   } else {
     console.log("Hay campos incorrectos o Campos Obligatorios por rellenar(*)");
