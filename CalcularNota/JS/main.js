@@ -9,9 +9,9 @@ const nota1 = document.querySelector("#nota1");
 const nota2 = document.querySelector("#nota2");
 
 //Creando Expresiones Regulares
-let expresionNombre = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
-let expresionApellido = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
-let expresionDocumento = /^-?\d+\.?\d*$/m;
+let expresionNombre = /^[a-zA-ZÀ-ÿ\s]{3,32}$/;
+let expresionApellido = /^[a-zA-ZÀ-ÿ\s]{3,32}$/;
+let expresionDocumento = /^[-?\d+\.?\d*]{10}$/m;
 let expresionNota = /^(\d)?(\d|,)*\.?\d$/;
 let expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
@@ -27,18 +27,18 @@ const campos = {
 
 //Funciones
 
-function ValidarExpresiones(event, expresion, campo) {
+function ValidarExpresiones(event, expresion, campo, nombreCampo) {
   if (expresion.test(event.target.value)) {
     console.log("Validación exitosa");
     campo.classList.add("correcto");
     campo.classList.remove("error");
-    campos[campo]=true;
+    campos[nombreCampo] = true;
     // return true;
   } else {
     console.log("Validación errada");
     campo.classList.add("error");
     campo.classList.remove("correcto");
-    campos[campo]=false;
+    campos[nombreCampo] = false;
     // return false;
   }
 }
@@ -61,15 +61,24 @@ function ValidarCamposVacios() {
   return estado;
 }
 
-function validarNota(nota) {
-  if (parseFloat(nota.value < 0.0) && parseFloat(nota.value > 5.0)) {
+const validarNota = (nota, nombreCampo) => {
+  if (
+    (parseFloat(nota.value) < 0.0 || parseFloat(nota.value) > 5.0) ||
+    (nota.value == "" || isNaN(nota.value)==true)
+  ) {
     console.log(nota.value);
     console.log("Nota incorrecta");
+    nota.classList.remove("correcto");
+    nota.classList.add("error");
+    campos[nombreCampo] = false;
   } else {
     console.log(nota.value);
     console.log("Nota correcta");
+    nota.classList.remove("error");
+    nota.classList.add("correcto");
+    campos[nombreCampo] = true;
   }
-}
+};
 
 function LimpiarCampos() {
   //Ciclo para limpiar los inputs(campos de texto) del formulario
@@ -125,55 +134,38 @@ const validarFormulario = (event) => {
   let nom, apel, doc, cor, n1, n2;
   switch (event.target.name) {
     case "nombre":
-      ValidarExpresiones(event, expresionNombre, nombre);
+      ValidarExpresiones(event, expresionNombre, nombre, "nombre");
       // console.log(nom);
       break;
     case "apellido":
-      ValidarExpresiones(event, expresionApellido, apellido);
+      ValidarExpresiones(event, expresionApellido, apellido, "apellido");
       break;
-    case "documento":
-      ValidarExpresiones(event, expresionDocumento, documento);
+    case "documento": 
+      ValidarExpresiones(event, expresionDocumento, documento, "documento");
       break;
     case "correo":
-      ValidarExpresiones(event, expresionCorreo, correo);
+      ValidarExpresiones(event, expresionCorreo, correo, "correo");
       break;
     case "nota1":
-      ValidarExpresiones(event, expresionNota, nota1);
-      validarNota(nota1);
+      ValidarExpresiones(event, expresionNota, nota1, "notaUno");
+      validarNota(nota1, "notaUno");
       break;
     case "nota2":
-      ValidarExpresiones(event, expresionNota, nota2);
-      validarNota(nota2);
+      ValidarExpresiones(event, expresionNota, nota2, "notaDos");
+      validarNota(nota2, "notaDos");
 
       break;
     default:
       break;
   }
-  console.log(
-    `Nombre: ${nom} Apellido: ${apel} Doc: ${doc} Corr: ${cor} Nota 1: ${n1}, Nota 2: ${n2}`
-  );
+
   // camposCorrectos = ValidarCamposCorrectos(nom, apel, doc, cor, n1, n2);
 };
 
-function ValidarCamposCorrectos() {
-  if (
-    nom == true &&
-    apel == true &&
-    doc == true &&
-    cor == true &&
-    n1 == true &&
-    n2 == true
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 inputs.forEach((input) => {
   // console.log(input);
-  input.addEventListener("keydown", validarFormulario);
-  input.addEventListener("blur",validarFormulario);
+  input.addEventListener("keyup", validarFormulario);
+  input.addEventListener("blur", validarFormulario);
 });
 
 // const mostrarnombre = document.querySelector("#mostrarNombre");
@@ -188,7 +180,22 @@ inputs.forEach((input) => {
 const btnCalcular = document.querySelector("#btnCalcular");
 
 btnCalcular.addEventListener("click", () => {
-  if (ValidarCamposVacios() == false) {
+  console.log(
+    campos.nombre,
+    campos.apellido,
+    campos.documento,
+    campos.correo,
+    campos.notaUno,
+    campos.notaDos
+  );
+  if (
+    campos.nombre &&
+    campos.apellido &&
+    campos.documento &&
+    campos.correo &&
+    campos.notaUno &&
+    campos.notaDos
+  ) {
     mostrarDatos();
     // LimpiarCampos();
     // formulario.reset();
