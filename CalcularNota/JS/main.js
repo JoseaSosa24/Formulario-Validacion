@@ -15,7 +15,15 @@ let expresionDocumento = /^-?\d+\.?\d*$/m;
 let expresionNota = /^(\d)?(\d|,)*\.?\d$/;
 let expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
-//
+//Vector de campos
+const campos = {
+  nombre: false,
+  apellido: false,
+  documento: false,
+  correo: false,
+  notaUno: false,
+  notaDos: false,
+};
 
 //Funciones
 
@@ -176,7 +184,6 @@ const validarFormulario = (event) => {
 };
 
 function ValidarCamposCorrectos() {
-   
   if (
     nom == true &&
     apel == true &&
@@ -215,7 +222,8 @@ btnCalcular.addEventListener("click", () => {
     mensajeEmergente.textContent = "";
   } else {
     console.log("Hay campos incorrectos o Campos Obligatorios por rellenar(*)");
-    mensajeEmergente.textContent ="Hay campos incorrectos o Campos Obligatorios por rellenar(*)";
+    mensajeEmergente.textContent =
+      "Hay campos incorrectos o Campos Obligatorios por rellenar(*)";
   }
 });
 
