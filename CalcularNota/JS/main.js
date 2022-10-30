@@ -217,7 +217,8 @@ btnCalcular.addEventListener("click", () => {
 
 const btnBorrar = document.querySelector("#btnBorrar");
 btnBorrar.addEventListener("click", () => {
-  LimpiarCampos();
+  formulario.reset();
+  // LimpiarCampos();
   LimpiarCamposSalida();
   mensajeEmergente.textContent = "";
 });
