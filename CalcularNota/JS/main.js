@@ -114,14 +114,11 @@ function mostrarDatos() {
   document.querySelector("#mostrarNotaFinal").textContent = `Nota Final: ${CalcularNotaFinal()}`;
 }
 
-let validar;
 let mensajeEmergente = document.querySelector("#mensaje-emergente");
-let camposCorrectos;
 //Funciones Anonimas-Flecha
 const validarFormulario = (event) => {
   // event.preventDefault();
   mensajeEmergente.textContent = "";
-  let nom, apel, doc, cor, n1, n2;
   switch (event.target.name) {
     case "nombre":
       ValidarExpresiones(event, expresionNombre, nombre, "nombre");
@@ -149,9 +146,9 @@ const validarFormulario = (event) => {
       break;
   }
 
-  // camposCorrectos = ValidarCamposCorrectos(nom, apel, doc, cor, n1, n2);
 };
 
+//Cilo que activa eventos
 inputs.forEach((input) => {
   // console.log(input);
   input.addEventListener("keyup", validarFormulario);
