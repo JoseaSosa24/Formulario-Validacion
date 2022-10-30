@@ -50,7 +50,7 @@ function ValidarCamposVacios() {
 }
 
 function validarNota(nota) {
-  if (parseFloat(nota.value < 0.0) || parseFloat(nota.value > 5.0)) {
+  if (parseFloat(nota.value < 0.0) && parseFloat(nota.value > 5.0)) {
     console.log(nota.value);
     console.log("Nota incorrecta");
   } else {
