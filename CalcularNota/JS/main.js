@@ -32,12 +32,14 @@ function ValidarExpresiones(event, expresion, campo) {
     console.log("Validación exitosa");
     campo.classList.add("correcto");
     campo.classList.remove("error");
-    return true;
+    campos[campo]=true;
+    // return true;
   } else {
     console.log("Validación errada");
     campo.classList.add("error");
     campo.classList.remove("correcto");
-    return false;
+    campos[campo]=false;
+    // return false;
   }
 }
 
@@ -123,24 +125,24 @@ const validarFormulario = (event) => {
   let nom, apel, doc, cor, n1, n2;
   switch (event.target.name) {
     case "nombre":
-      validar = ValidarExpresiones(event, expresionNombre, nombre);
+      ValidarExpresiones(event, expresionNombre, nombre);
       // console.log(nom);
       break;
     case "apellido":
-      validar = ValidarExpresiones(event, expresionApellido, apellido);
+      ValidarExpresiones(event, expresionApellido, apellido);
       break;
     case "documento":
-      validar = ValidarExpresiones(event, expresionDocumento, documento);
+      ValidarExpresiones(event, expresionDocumento, documento);
       break;
     case "correo":
-      validar = ValidarExpresiones(event, expresionCorreo, correo);
+      ValidarExpresiones(event, expresionCorreo, correo);
       break;
     case "nota1":
-      validar = ValidarExpresiones(event, expresionNota, nota1);
+      ValidarExpresiones(event, expresionNota, nota1);
       validarNota(nota1);
       break;
     case "nota2":
-      validar = ValidarExpresiones(event, expresionNota, nota2);
+      ValidarExpresiones(event, expresionNota, nota2);
       validarNota(nota2);
 
       break;
