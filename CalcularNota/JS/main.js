@@ -43,24 +43,6 @@ function validarExpresiones(event, expresion, campo, nombreCampo) {
   }
 }
 
-function validarCamposVacios() {
-  let estado;
-
-  console.log(inputsTexto);
-  inputsTexto.forEach((input) => {
-    // console.log(input);
-    if (input.value == "null" || input.value == "" || input.value == NaN) {
-      console.log(inputsTexto);
-      console.log("Campos vacios" + inputsTexto);
-      estado = true;
-    } else {
-      console.log("Campos llenos");
-      estado = false;
-    }
-  });
-  return estado;
-}
-
 const validarNota = (nota, nombreCampo) => {
   if (parseFloat(nota.value) < 0.0 || parseFloat(nota.value) > 5.0 || nota.value == "" ||isNaN(nota.value) == true) {
     console.log(nota.value);
