@@ -27,7 +27,7 @@ const campos = {
 
 //Funciones
 
-function ValidarExpresiones(event, expresion, campo, nombreCampo) {
+function validarExpresiones(event, expresion, campo, nombreCampo) {
   if (expresion.test(event.target.value)) {//Validando la expresión regular
     console.log("Validación exitosa");
     campo.classList.add("correcto");
@@ -43,7 +43,7 @@ function ValidarExpresiones(event, expresion, campo, nombreCampo) {
   }
 }
 
-function ValidarCamposVacios() {
+function validarCamposVacios() {
   let estado;
 
   console.log(inputsTexto);
@@ -85,17 +85,17 @@ function LimpiarCampos() {
   });
 }
 
-function LimpiarCamposSalida() {
+function limpiarCamposSalida() {
   const labels = document.querySelectorAll("label");
   labels.forEach((label) => {
     label.textContent = "";
   });
-}
+};
 
-function CalcularNotaFinal() {
+function calcularNotaFinal() {
   let notaFinal = (parseFloat(nota1.value) + parseFloat(nota2.value)) / 2;
   return notaFinal;
-}
+};
 
 function mostrarDatos() {
   document.querySelector( "#mostrarNombre").textContent = `Nombre: ${nombre.value}`;
@@ -104,7 +104,7 @@ function mostrarDatos() {
   document.querySelector("#mostrarCorreo").textContent = `Correo: ${correo.value}`;
   document.querySelector("#mostrarNota1").textContent = `Nota 1: ${nota1.value}`;
   document.querySelector("#mostrarNota2").textContent = `Nota 2: ${nota2.value}`;
-  document.querySelector("#mostrarNotaFinal").textContent = `Nota Final: ${CalcularNotaFinal()}`;
+  document.querySelector("#mostrarNotaFinal").textContent = `Nota Final: ${calcularNotaFinal()}`;
 }
 
 let mensajeEmergente = document.querySelector("#mensaje-emergente");
@@ -114,31 +114,30 @@ const validarFormulario = (event) => {
   mensajeEmergente.textContent = "";
   switch (event.target.name) {
     case "nombre":
-      ValidarExpresiones(event, expresionNombre, nombre, "nombre");
+      validarExpresiones(event, expresionNombre, nombre, "nombre");
       // console.log(nom);
       break;
     case "apellido":
-      ValidarExpresiones(event, expresionApellido, apellido, "apellido");
+      validarExpresiones(event, expresionApellido, apellido, "apellido");
       break;
     case "documento":
-      ValidarExpresiones(event, expresionDocumento, documento, "documento");
+      validarExpresiones(event, expresionDocumento, documento, "documento");
       break;
     case "correo":
-      ValidarExpresiones(event, expresionCorreo, correo, "correo");
+      validarExpresiones(event, expresionCorreo, correo, "correo");
       break;
     case "nota1":
-      ValidarExpresiones(event, expresionNota, nota1, "notaUno");
+      validarExpresiones(event, expresionNota, nota1, "notaUno");
       validarNota(nota1, "notaUno");
       break;
     case "nota2":
-      ValidarExpresiones(event, expresionNota, nota2, "notaDos");
+      validarExpresiones(event, expresionNota, nota2, "notaDos");
       validarNota(nota2, "notaDos");
 
       break;
     default:
       break;
   }
-
 };
 
 //Cilo que activa eventos
@@ -159,14 +158,11 @@ inputs.forEach((input) => {
 //Llamada de eventos
 const btnCalcular = document.querySelector("#btnCalcular");
 
-btnCalcular.addEventListener("click", (event) => {
-event.preventDefault();
-  console.log(campos.nombre, campos.apellido, campos.documento, campos.correo, campos.notaUno, campos.notaDos
-  );
+btnCalcular.addEventListener("click", () => {
+// event.preventDefault();
+  console.log(campos.nombre, campos.apellido, campos.documento, campos.correo, campos.notaUno, campos.notaDos);
   
-  if (
-    campos.nombre && campos.apellido && campos.documento && campos.correo && campos.notaUno && campos.notaDos
-  ) {
+  if ( campos.nombre && campos.apellido && campos.documento && campos.correo && campos.notaUno && campos.notaDos) {
     mostrarDatos();
     // LimpiarCampos();
     // formulario.reset();
@@ -180,8 +176,10 @@ event.preventDefault();
 
 const btnBorrar = document.querySelector("#btnBorrar");
 btnBorrar.addEventListener("click", () => {
-  formulario.reset();
-  // LimpiarCampos();
-  LimpiarCamposSalida();
+  // formulario.reset();
+  LimpiarCampos();
+  limpiarCamposSalida();
   mensajeEmergente.textContent = "";
 });
+
+
