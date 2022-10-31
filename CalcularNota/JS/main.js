@@ -11,7 +11,7 @@ const nota2 = document.querySelector("#nota2");
 //Creando Expresiones Regulares
 let expresionNombre = /^[a-zA-ZÀ-ÿ\s]{3,32}$/;
 let expresionApellido = /^[a-zA-ZÀ-ÿ\s]{3,32}$/;
-let expresionDocumento = /^[-?\d+\.?\d*]{10}$/m;
+let expresionDocumento = /^[-?\d+\.?\d*]{8,12}$/m;
 let expresionNota = /^(\d)?(\d|,)*\.?\d$/;
 let expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
@@ -28,7 +28,7 @@ const campos = {
 //Funciones
 
 function ValidarExpresiones(event, expresion, campo, nombreCampo) {
-  if (expresion.test(event.target.value)) {
+  if (expresion.test(event.target.value)) {//Validando la expresión regular
     console.log("Validación exitosa");
     campo.classList.add("correcto");
     campo.classList.remove("error");
@@ -62,12 +62,7 @@ function ValidarCamposVacios() {
 }
 
 const validarNota = (nota, nombreCampo) => {
-  if (
-    parseFloat(nota.value) < 0.0 ||
-    parseFloat(nota.value) > 5.0 ||
-    nota.value == "" ||
-    isNaN(nota.value) == true
-  ) {
+  if (parseFloat(nota.value) < 0.0 || parseFloat(nota.value) > 5.0 || nota.value == "" ||isNaN(nota.value) == true) {
     console.log(nota.value);
     console.log("Nota incorrecta");
     nota.classList.remove("correcto");
@@ -103,9 +98,7 @@ function CalcularNotaFinal() {
 }
 
 function mostrarDatos() {
-  document.querySelector(
-    "#mostrarNombre"
-  ).textContent = `Nombre: ${nombre.value}`;
+  document.querySelector( "#mostrarNombre").textContent = `Nombre: ${nombre.value}`;
   document.querySelector("#mostrarApellido").textContent = `Apellido: ${apellido.value}`;
   document.querySelector("#mostrarDocumento").textContent = `Documento: ${documento.value}`;
   document.querySelector("#mostrarCorreo").textContent = `Correo: ${correo.value}`;
@@ -166,9 +159,11 @@ inputs.forEach((input) => {
 //Llamada de eventos
 const btnCalcular = document.querySelector("#btnCalcular");
 
-btnCalcular.addEventListener("click", () => {
+btnCalcular.addEventListener("click", (event) => {
+event.preventDefault();
   console.log(campos.nombre, campos.apellido, campos.documento, campos.correo, campos.notaUno, campos.notaDos
   );
+  
   if (
     campos.nombre && campos.apellido && campos.documento && campos.correo && campos.notaUno && campos.notaDos
   ) {
